@@ -33,7 +33,6 @@ class Settings(BaseSettings):
     )
 
     # Equation processing settings
-    EQUATION_PROCESSOR: Literal["mathpix", "original"] = "original"  # Default to original implementation
     MATHPIX_APP_ID: str = os.getenv("MATHPIX_APP_ID", "")
     MATHPIX_APP_KEY: str = os.getenv("MATHPIX_APP_KEY", "")
 

@@ -43,13 +43,8 @@ class BaseConverter:
     def initialize_processors(self, processor_cls_lst: List[Type[BaseProcessor]]) -> List[BaseProcessor]:
         processors = []
         for processor_cls in processor_cls_lst:
-            if callable(processor_cls) and processor_cls.__name__ == 'get_equation_processor':
-                # Special case for equation processor
-                processor = processor_cls(config=self.config)
-            else:
-                processor = self.resolve_dependencies(processor_cls)
-            processors.append(processor)
-
+            processors.append(self.resolve_dependencies(processor_cls))
+            
         simple_llm_processors = [p for p in processors if issubclass(type(p), BaseLLMSimpleBlockProcessor)]
         other_processors = [p for p in processors if not issubclass(type(p), BaseLLMSimpleBlockProcessor)]
 
