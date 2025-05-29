@@ -50,6 +50,8 @@ class EquationProcessor(BaseProcessor):
                 app_id=settings.MATHPIX_APP_ID,
                 app_key=settings.MATHPIX_APP_KEY
             )
+            # Add TextInlineMath to block types when Mathpix is enabled
+            self.block_types = (BlockTypes.Equation, BlockTypes.TextInlineMath)
 
     def get_batch_size(self):
         # Set to 1/4th of OCR batch size due to sequence length with tiling
