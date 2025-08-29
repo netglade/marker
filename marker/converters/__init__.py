@@ -44,7 +44,7 @@ class BaseConverter:
         processors = []
         for processor_cls in processor_cls_lst:
             processors.append(self.resolve_dependencies(processor_cls))
-
+            
         simple_llm_processors = [p for p in processors if issubclass(type(p), BaseLLMSimpleBlockProcessor)]
         other_processors = [p for p in processors if not issubclass(type(p), BaseLLMSimpleBlockProcessor)]
 
